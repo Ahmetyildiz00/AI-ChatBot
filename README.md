@@ -1,6 +1,6 @@
 # Lunera Chatbot
 
-Lunera, hayali bir moda markasıdır. Bu projede Lunera'nın dijital asistanı geliştirildi. Kullanıcılar, ürün bilgilerini sorgulayabilir, beden ve renk filtrelemesi yapabilir, fiyatları öğrenebilir ve sipariş oluşturabilir.
+Lunera, hayali bir moda markasıdır. Bu projede Lunera'nın dijital asistanı geliştirildi. Kullanıcılar, ürün bilgilerini sorgulayabilir, beden ve renk filtrelemesi yapabilir ve fiyatları öğrenebilir.
 
 ## 🚀 Özellikler
 
