@@ -9,7 +9,6 @@ Lunera, hayali bir moda markasıdır. Bu projede Lunera'nın dijital asistanı g
 -  Excel tabanlı ürün verisi kullanımı (`product_list.xlsx`)
 -  Stok durumu sorgulama
 -  Ürün fiyatı gösterimi
--  Sipariş bilgisi alma ve onaylama
 -  Desteklenmeyen konularda kibarca geri dönüş
 -  CORS destekli FastAPI backend + React frontend
 
