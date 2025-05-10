@@ -1,19 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import chatbotIcon from "./images/icon.png";
 import "./App.css";
 
 function App() {
   const [messages, setMessages] = useState([
-    { sender: "ChatBot", text: "Sisteme Hoşgeldiniz" }
+    { sender: "Lunera", text: "Merhaba! Ben Lunera'nın dijital asistanıyım. Size nasıl yardımcı olabilirim?" }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    const userMsg = { sender: "Kullanıcı", text: input };
+    const userMsg = { sender: "Siz", text: input };
     setMessages([...messages, userMsg]);
     setLoading(true);
 
@@ -24,7 +33,13 @@ function App() {
     });
 
     const data = await res.json();
-    const botMsg = { sender: "ChatBot", text: data.reply };
+    const botMsg = {
+  sender: "Lunera",
+  text:
+    typeof data.reply === "string"
+      ? data.reply
+      : data.reply?.output || "Bir yanıt alınamadı."
+};
     setMessages((prev) => [...prev, botMsg]);
     setInput("");
     setLoading(false);
@@ -34,18 +49,18 @@ function App() {
     <div className="container">
       <div className="header">
         <img src={chatbotIcon} alt="ChatBot" />
-        <h2>ChatBot</h2>
       </div>
       <div className="messages-container">
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`message ${msg.sender === "Kullanıcı" ? "user-message" : "bot-message"}`}
+            className={`message ${msg.sender === "Siz" ? "user-message" : "bot-message"}`}
           >
             <strong>{msg.sender}:</strong> {msg.text}
           </div>
         ))}
-        {loading && <div>Yanıt bekleniyor...</div>}
+        {loading && <div className="loading">Yanıt bekleniyor...</div>}
+        <div ref={messagesEndRef} />
       </div>
       <form onSubmit={sendMessage} className="input-container">
         <input
